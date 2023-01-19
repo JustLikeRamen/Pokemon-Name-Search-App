@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+
+<!-- This section here is for metadata and that little tab at the top of the browser. -->
+	<head>
+		<!-- Location for any additional fonts we may have imported. -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Abel&family=Bungee+Outline&family=Kanit:wght@500&display=swap" rel="stylesheet">
+
+		<!-- In this case, we want Bungee Outline and Kanit. -->
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Abel&family=Bungee+Outline&family=Kanit:wght@500&display=swap');
+		</style>
+
+		<!-- Make sure to import the styles.css sheet! -->
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+
+		<!-- The webpage title and icon for the teeny tab. -->
+		<title>DJ's CS430P Final Project!</title>
+		<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+		<meta charset="UTF-8">
+		<meta name="description" content="My final project for CS430P, the Pokemon
+						  Name search application takes a pokemon name
+						  and displays the information about that pokemon!
+						  If one cannot be found, nothing will be displayed.">
+		<meta name="author" content="DJ Nghiem">
+	</head>
+
+<!-- Now we get to the body of the website, which is what the user sees. -->
+	<body>
+		<!-- The headings of the website. -->
+		<h1>Who's That Pokemon?</h1>
+		<h2>A Pokemon Name Search!</h2>
+
+		<!-- Include the search bar. -->
+		<form class="search_bar" action=" {{ url_for('pokeSearch') }}" method=post>
+			<input type=text name="search" placeholder="Find your pokemon...">
+			<div>
+				<input type=submit value="Catch!">
+			</div>
+		</form>
+
+		<!-- Give a warning to Nidoran-male and Nidoran-female -->
+		<p class="note"> *Note than Nidoran male and female are typed as "Nidoran-M" and "Nidoran-F" respectively. </p>
+
+		<!-- Create 3-columns to place the information retrieved from the database. -->
+		<div class="information">
+
+		  <!-- Name, Dex Entry, and Abilities. -->
+		  <div class="centerAlign" id="name-dex-ability">
+			  <div>
+				  <p>Name: {{name}}</p>
+				  <p>Dex Entry #: {{dexEntry}}</p>
+				  <p>Ability: {{ability}}</p>
+			  </div>
+		  </div>
+
+		  <!-- Sprite image -->
+		  <div class="centerAlign" id="sprite">
+			  <div>
+				  <img src={{sprite}} alt={{name}} style="width:300px; height:300px;">
+			  </div>
+		  </div>
+
+		  <!-- Additional Forms and Type. -->
+		  <div class="centerAlign" id ="forms-type">
+			  <div>
+				  <p>Add. Forms: {{forms}}</p>
+				  <p>Type: {{types}}</p>
+			  </div>
+		  </div>
+	</body>
+</html>
